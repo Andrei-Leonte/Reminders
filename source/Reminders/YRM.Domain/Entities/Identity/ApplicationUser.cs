@@ -1,4 +1,6 @@
-﻿namespace YRM.Domain.Entities.Identity
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace YRM.Domain.Entities.Identity
 {
     public class ApplicationUser : IdentityUser
     {

@@ -3,23 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YRM.IdentityServer.Web", "YRM.IdentityServer.Web\YRM.IdentityServer.Web.csproj", "{601B57A5-A1D0-4150-A312-319F46D48AE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YRM.IdentityServer.Web", "YRM.IdentityServer.Web\YRM.IdentityServer.Web.csproj", "{601B57A5-A1D0-4150-A312-319F46D48AE1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{614D3A19-7BC2-4BBE-8BD8-09D35550D1B1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserManager", "UserManager", "{C049A268-9E9B-40C1-8D76-A0EE989CFA07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YRM.UserManager.Function", "YRM.UserManager.Function\YRM.UserManager.Function.csproj", "{7CC4DB80-05C3-4ECF-AF53-FAF1DF8DD3DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YRM.UserManager.Function", "YRM.UserManager.Function\YRM.UserManager.Function.csproj", "{7CC4DB80-05C3-4ECF-AF53-FAF1DF8DD3DC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{88F9B797-44FB-4DB0-A176-09C8A9292CA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YRM.Infrastructure", "YRM.Infrastructure\YRM.Infrastructure.csproj", "{F0A7EA50-4965-4F53-84E5-8FEB4EB10595}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YRM.Infrastructure", "YRM.Infrastructure\YRM.Infrastructure.csproj", "{F0A7EA50-4965-4F53-84E5-8FEB4EB10595}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{99DCC7A3-6B50-48CD-9F06-42004C89DCE9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{F9A1185E-F9F9-4F13-816D-F60E30A5103B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YRM.Domain", "YRM.Domain\YRM.Domain.csproj", "{0FD86608-7745-4C00-A008-8CD809D0905D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YRM.Domain", "YRM.Domain\YRM.Domain.csproj", "{0FD86608-7745-4C00-A008-8CD809D0905D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Migrations", "Migrations", "{D4F9620D-5E6C-4DFA-861F-3714FF0A63F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YRM.Migrations", "YRM.Migrations\YRM.Migrations.csproj", "{A5FB1A05-1259-47C9-AC6A-D92D085BDE47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +47,10 @@ Global
 		{0FD86608-7745-4C00-A008-8CD809D0905D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FD86608-7745-4C00-A008-8CD809D0905D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FD86608-7745-4C00-A008-8CD809D0905D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5FB1A05-1259-47C9-AC6A-D92D085BDE47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5FB1A05-1259-47C9-AC6A-D92D085BDE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5FB1A05-1259-47C9-AC6A-D92D085BDE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5FB1A05-1259-47C9-AC6A-D92D085BDE47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +62,8 @@ Global
 		{F0A7EA50-4965-4F53-84E5-8FEB4EB10595} = {88F9B797-44FB-4DB0-A176-09C8A9292CA6}
 		{F9A1185E-F9F9-4F13-816D-F60E30A5103B} = {99DCC7A3-6B50-48CD-9F06-42004C89DCE9}
 		{0FD86608-7745-4C00-A008-8CD809D0905D} = {F9A1185E-F9F9-4F13-816D-F60E30A5103B}
+		{D4F9620D-5E6C-4DFA-861F-3714FF0A63F4} = {99DCC7A3-6B50-48CD-9F06-42004C89DCE9}
+		{A5FB1A05-1259-47C9-AC6A-D92D085BDE47} = {D4F9620D-5E6C-4DFA-861F-3714FF0A63F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FA31EB61-D939-48DF-97C5-12DC41AB625C}

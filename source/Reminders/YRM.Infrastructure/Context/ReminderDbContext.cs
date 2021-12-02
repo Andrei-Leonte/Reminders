@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using YRM.Infrastructure.Entities.Identity;
+using YRM.Domain.Entities.Identity;
 
 namespace YRM.Infrastructure.Context
 {
