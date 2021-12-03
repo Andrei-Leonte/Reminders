@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using YRM.Domain.Configurations;
 using YRM.Domain.Entities.Identity;
 
-namespace YRM.Infrastructure.Context
+namespace YRM.Infrastructure
 {
     public class ReminderDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -13,6 +14,8 @@ namespace YRM.Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new ReminderConfiguration());
+
             base.OnModelCreating(builder);
         }
     }
