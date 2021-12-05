@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "YRM.UserManager.Function": {
+      "commandName": "Project",
+      "commandLineArgs": "host start --port 5502 --nodeDebugPort 5860"
+    }
+  }
+}

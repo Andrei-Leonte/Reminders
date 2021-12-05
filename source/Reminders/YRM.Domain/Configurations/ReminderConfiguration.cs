@@ -11,6 +11,11 @@ namespace YRM.Domain.Configurations
             builder.HasKey(entity => entity.Id);
 
             builder
+                .Property(e => e.Title)
+                .HasMaxLength(128)
+                .IsRequired();
+
+            builder
                 .Property(e => e.Description)
                 .HasMaxLength(256)
                 .IsRequired();

@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using YRM.Infrastructure;
+using YRM.Migrations;
 
 #nullable disable
 
-namespace YRM.Infrastructure.Migrations
+namespace YRM.Migrations.Migrations
 {
-    [DbContext(typeof(ReminderDbContext))]
-    partial class ReminderDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ReminderMigrationDbContext))]
+    partial class ReminderMigrationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -228,9 +228,15 @@ namespace YRM.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Description")
+                    b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(256)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.HasKey("Id");
 

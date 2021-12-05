@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "YRM.Migrations": {
+      "commandName": "Project",
+      "commandLineArgs": "host start --port 5501 --nodeDebugPort 5860"
+    }
+  }
+}
