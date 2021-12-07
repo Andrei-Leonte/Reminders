@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YRM.Domain", "YRM.Domain\YR
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Migrations", "Migrations", "{D4F9620D-5E6C-4DFA-861F-3714FF0A63F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YRM.Migrations", "YRM.Migrations\YRM.Migrations.csproj", "{A5FB1A05-1259-47C9-AC6A-D92D085BDE47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YRM.Migrations", "YRM.Migrations\YRM.Migrations.csproj", "{A5FB1A05-1259-47C9-AC6A-D92D085BDE47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

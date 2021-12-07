@@ -9,7 +9,7 @@ namespace YRM.Migrations
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.;Database=Reminder;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=.;Database=ReminderDB;Trusted_Connection=True;");
         }
     }
 }
