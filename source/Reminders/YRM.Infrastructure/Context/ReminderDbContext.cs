@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using YRM.Domain.Configurations;
-using YRM.Infrastructure.Context.Base;
+using YRM.Domain.Entities.Identity;
 
 namespace YRM.Infrastructure
 {
-    public class ReminderDbContext : BaseReminderDbContext
+    public class ReminderDbContext : IdentityDbContext<ApplicationUser>
     {
         public ReminderDbContext(DbContextOptions<ReminderDbContext> options)
             : base(options)

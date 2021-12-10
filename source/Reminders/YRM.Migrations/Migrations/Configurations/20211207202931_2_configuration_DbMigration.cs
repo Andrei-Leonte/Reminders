@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace YRM.Migrations.Migrations.Configuration
+namespace YRM.Migrations.Migrations.Configurations
 {
     public partial class initial_identity_server_configuration_DbMigration : Migration
     {

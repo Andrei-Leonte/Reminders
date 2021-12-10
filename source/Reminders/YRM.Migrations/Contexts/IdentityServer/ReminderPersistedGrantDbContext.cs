@@ -2,16 +2,14 @@
 using Duende.IdentityServer.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
 
-namespace YRM.Migrations.Contexts.IdentityServer
+namespace YRM.Migrations.Contexts.IdentityServer.Reminders
 {
     public class ReminderPersistedGrantDbContext : PersistedGrantDbContext
     {
         public ReminderPersistedGrantDbContext(
-            DbContextOptions<PersistedGrantDbContext> options,
-            OperationalStoreOptions storeOptions)
+            DbContextOptions<PersistedGrantDbContext> options, OperationalStoreOptions storeOptions)
             : base(options, storeOptions)
         {
-            //Database.SetConnectionString("");
         }
     }
 }

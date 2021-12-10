@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using YRM.Migrations.Contexts.IdentityServer;
+using YRM.Migrations.Contexts.IdentityServer.Reminders;
 
 namespace YRM.Migrations
 {
@@ -21,17 +22,14 @@ namespace YRM.Migrations
         public MigrationFunction(
             ReminderConfigurationDbContext reminderConfigurationDbContext,
             ReminderPersistedGrantDbContext reminderPersistedGrantDbContext,
-            ILoggerFactory loggerFactory,
-            IConfiguration configuration)
+            ReminderMigrationDbContext reminderMigrationDbContext,
+            ILoggerFactory loggerFactory)
         {
             this.reminderConfigurationDbContext = reminderConfigurationDbContext;
             this.reminderPersistedGrantDbContext = reminderPersistedGrantDbContext;
+            this.reminderMigrationDbContext = reminderMigrationDbContext;
+
             logger = loggerFactory.CreateLogger<MigrationFunction>();
-
-            var connectionString = configuration.GetValue<string>("ReminderDBConnectionString");
-
-            reminderMigrationDbContext = new ReminderMigrationDbContext();
-            reminderMigrationDbContext.Database.SetConnectionString(connectionString);
         }
 
         [Function("Migrate")]
@@ -45,7 +43,9 @@ namespace YRM.Migrations
 
                 var migrations = reminderMigrationDbContext.Database.GetAppliedMigrations();
 
-                logger.LogDebug($"{migrations.Count()} applied.");
+                logger.LogDebug($"ReminderConfigurationDbContext {migrations.Count()} applied.");
+                logger.LogDebug($"ReminderPersistedGrantDbContext {migrations.Count()} applied.");
+                logger.LogDebug($"ReminderMigrationDbContext {migrations.Count()} applied.");
             }
             catch(Exception e)
             {

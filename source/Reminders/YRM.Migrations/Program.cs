@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using YRM.Domain.Entities.Identity;
 using YRM.Migrations.Contexts.IdentityServer;
+using YRM.Migrations.Contexts.IdentityServer.Reminders;
 
 namespace YRM.Migrations
 {
@@ -15,13 +16,18 @@ namespace YRM.Migrations
                 .ConfigureFunctionsWorkerDefaults()
                 .ConfigureServices(services =>
                 {
-                    services.AddDbContext<ReminderPersistedGrantDbContext>(options =>
-                        options.UseSqlServer(@"Server=.;Database=ReminderDB;Trusted_Connection=True;")
-                    );
+                    services.AddDbContext<ReminderConfigurationDbContext>(options =>
+                        options.UseSqlServer(@"Server=.;Database=ReminderDB;Trusted_Connection=True;"));
 
-                    services.AddIdentity<ApplicationUser, IdentityRole>()
-                        .AddEntityFrameworkStores<ReminderPersistedGrantDbContext>()
-                        .AddDefaultTokenProviders();
+                    services.AddDbContext<ReminderPersistedGrantDbContext>(options =>
+                        options.UseSqlServer(@"Server=.;Database=ReminderDB;Trusted_Connection=True;"));
+
+                    services.AddDbContext<ReminderMigrationDbContext>(options =>
+                        options.UseSqlServer(@"Server=.;Database=ReminderDB;Trusted_Connection=True;"));
+
+                    //services.AddIdentity<ApplicationUser, IdentityRole>()
+                    //    .AddEntityFrameworkStores<ReminderPersistedGrantDbContext>()
+                    //    .AddDefaultTokenProviders();
 
                     services.AddIdentityServer(options =>
                     {
