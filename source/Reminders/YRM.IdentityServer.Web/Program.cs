@@ -1,21 +1,18 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using YRM.Domain.Entities.Identity;
-using YRM.IdentityServer.Web;
 using YRM.Infrastructure.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+var connectionString = configuration["ReminderDBConnectionString"];
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ReminderDbContext>(
-    options =>
-        options.UseSqlServer(
-            configuration.GetConnectionString("ReminderDBConnectionString")));
+builder.Services.AddDbContext<ReminderDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ReminderDbContext>()
@@ -30,13 +27,14 @@ builder.Services
         options.Events.RaiseSuccessEvents = true;
         options.EmitStaticAudienceClaim = true;
     })
-    //.AddInMemoryIdentityResources(Config.IdentityResources)
-    //.AddInMemoryApiScopes(Config.ApiScopes)
-    //.AddInMemoryClients(Config.Clients)
-
-    .AddInMemoryClients(builder.Configuration.GetSection("ReminderIdentityClients"))
-    .AddInMemoryIdentityResources(Config.IdentityResources)
-    .AddInMemoryApiScopes(Config.ApiScopes)
+    .AddConfigurationStore(options =>
+    {
+        options.ConfigureDbContext = b => b.UseSqlServer(connectionString);
+    })
+    .AddOperationalStore(options =>
+    {
+        options.ConfigureDbContext = b => b.UseSqlServer(connectionString);
+    })
     .AddAspNetIdentity<ApplicationUser>();
 
 var app = builder.Build();

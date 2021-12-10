@@ -5,7 +5,7 @@ using YRM.Migrations.Interfaces.Contexts.Reminders;
 
 namespace YRM.Migrations.Contexts.Reminders
 {
-    public class ReminderMigrationDbContext : ReminderDbContext, IReminderMigrationDbContext
+    internal class ReminderMigrationDbContext : ReminderDbContext, IReminderMigrationDbContext
     {
         public ReminderMigrationDbContext(DbContextOptions<ReminderDbContext> options) : base(options)
         {

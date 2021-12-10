@@ -6,7 +6,7 @@ using YRM.Migrations.Interfaces.Contexts.IndentityServers;
 
 namespace YRM.Migrations.Contexts.IdentityServers
 {
-    public class ReminderConfigurationDbContext : ConfigurationDbContext, IReminderConfigurationDbContext
+    internal class ReminderConfigurationDbContext : ConfigurationDbContext, IReminderConfigurationDbContext
     {
         public ReminderConfigurationDbContext(
             DbContextOptions<ConfigurationDbContext> options, ConfigurationStoreOptions storeOptions)
@@ -17,6 +17,11 @@ namespace YRM.Migrations.Contexts.IdentityServers
         public async Task MigrateAsync()
         {
             await Database.MigrateAsync();
+        }
+
+        public async Task AddStartResourcesAsync()
+        {
+
         }
     }
 }
