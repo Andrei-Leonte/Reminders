@@ -1,13 +1,19 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using YRM.Domain.Entities.Identity;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using YRM.Infrastructure.Contexts;
+using YRM.Migrations.Interfaces.Contexts.Reminders;
 
-namespace YRM.Migrations
+namespace YRM.Migrations.Contexts.Reminders
 {
-    public class ReminderMigrationDbContext : IdentityDbContext<ApplicationUser>
+    public class ReminderMigrationDbContext : ReminderDbContext, IReminderMigrationDbContext
     {
-        public ReminderMigrationDbContext(DbContextOptions<ReminderMigrationDbContext> options) : base(options)
+        public ReminderMigrationDbContext(DbContextOptions<ReminderDbContext> options) : base(options)
         {
+        }
+
+        public async Task MigrateAsync()
+        {
+            await Database.MigrateAsync();
         }
     }
 }

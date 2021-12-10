@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using YRM.Domain.Entities.Identity;
-using YRM.Migrations.Contexts.IdentityServer;
-using YRM.Migrations.Contexts.IdentityServer.Reminders;
+using YRM.Infrastructure.Contexts;
+using YRM.Migrations.Contexts.IdentityServers;
+using YRM.Migrations.Contexts.Reminders;
 
 namespace YRM.Migrations
 {
@@ -12,24 +12,30 @@ namespace YRM.Migrations
     {
         public static void Main()
         {
+            IConfiguration configuration = null;
+
             var host = new HostBuilder()
-                .ConfigureFunctionsWorkerDefaults()
-                .ConfigureServices(services =>
-                {
-                    services.AddDbContext<ReminderConfigurationDbContext>(options =>
-                        options.UseSqlServer(@"Server=.;Database=ReminderDB;Trusted_Connection=True;"));
+                .ConfigureAppConfiguration(app => configuration = 
+                    app
+                        .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
+                        .Build())
+                .ConfigureFunctionsWorkerDefaults(builder => {
 
-                    services.AddDbContext<ReminderPersistedGrantDbContext>(options =>
-                        options.UseSqlServer(@"Server=.;Database=ReminderDB;Trusted_Connection=True;"));
+                    var sqlConnectionString = configuration.GetConnectionString("ReminderDBConnectionString");
 
-                    services.AddDbContext<ReminderMigrationDbContext>(options =>
-                        options.UseSqlServer(@"Server=.;Database=ReminderDB;Trusted_Connection=True;"));
+                    builder.Services.AddDbContext<ReminderConfigurationDbContext>(options =>
+                        options.UseSqlServer(sqlConnectionString));
 
-                    //services.AddIdentity<ApplicationUser, IdentityRole>()
-                    //    .AddEntityFrameworkStores<ReminderPersistedGrantDbContext>()
-                    //    .AddDefaultTokenProviders();
+                    builder.Services.AddDbContext<ReminderPersistedGrantDbContext>(options =>
+                        options.UseSqlServer(sqlConnectionString));
 
-                    services.AddIdentityServer(options =>
+                    builder.Services.AddDbContext<ReminderMigrationDbContext>(options =>
+                        options.UseSqlServer(sqlConnectionString));
+
+                    builder.Services.AddDbContext<ReminderDbContext>(options =>
+                        options.UseSqlServer(sqlConnectionString));
+
+                    builder.Services.AddIdentityServer(options =>
                     {
                         options.Events.RaiseErrorEvents = true;
                         options.Events.RaiseInformationEvents = true;
@@ -38,18 +44,16 @@ namespace YRM.Migrations
                         options.EmitStaticAudienceClaim = true;
                     }).AddConfigurationStore(options =>
                     {
-                        options.ConfigureDbContext = b =>
-                            b.UseSqlServer(
-                                @"Server=.;Database=ReminderDB;Trusted_Connection=True;");
+                        options.ConfigureDbContext = b => b.UseSqlServer(sqlConnectionString);
                     }).AddOperationalStore(options =>
                     {
-                        options.ConfigureDbContext = b =>
-                           b.UseSqlServer(
-                                @"Server=.;Database=ReminderDB;Trusted_Connection=True;");
+                        options.ConfigureDbContext = b => b.UseSqlServer(sqlConnectionString);
 
                         // this enables automatic token cleanup. this is optional.
                         options.EnableTokenCleanup = true;
                     });
+
+                    builder.Services.RegisterYRMMigrationsPackages();
                 })
                 .Build();
 

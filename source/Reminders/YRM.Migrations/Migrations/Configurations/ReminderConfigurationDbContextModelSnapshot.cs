@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
-using YRM.Migrations.Contexts.IdentityServer;
+using YRM.Migrations.Contexts.IdentityServers;
 
 #nullable disable
 

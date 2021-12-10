@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using YRM.Domain.Entities.Identity;
 using YRM.IdentityServer.Web;
-using YRM.Infrastructure;
+using YRM.Infrastructure.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;

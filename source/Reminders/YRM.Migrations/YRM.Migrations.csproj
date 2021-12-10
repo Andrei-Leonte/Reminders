@@ -34,6 +34,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\Contexts\" />
+    <Folder Include="Migrations\Reminders\" />
   </ItemGroup>
 </Project>

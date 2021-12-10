@@ -3,13 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using YRM.Domain.Configurations;
 using YRM.Domain.Entities.Identity;
 
-namespace YRM.Infrastructure.Context.Base
+namespace YRM.Infrastructure.Contexts
 {
-    public class BaseReminderDbContext : IdentityDbContext<ApplicationUser>
+    public class ReminderDbContext : IdentityDbContext<ApplicationUser>
     {
-        public BaseReminderDbContext() { }
-
-        public BaseReminderDbContext(DbContextOptions<ReminderDbContext> options)
+        public ReminderDbContext(DbContextOptions<ReminderDbContext> options)
             : base(options)
         {
         }

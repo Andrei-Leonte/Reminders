@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
-using YRM.Migrations.Contexts.IdentityServer.Reminders;
+using YRM.Migrations.Contexts.IdentityServers;
 
 #nullable disable
 
