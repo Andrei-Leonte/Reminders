@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System.Net;
 
 namespace YRM.UserManager.Function
@@ -14,17 +16,28 @@ namespace YRM.UserManager.Function
             _logger = loggerFactory.CreateLogger<Function1>();
         }
 
-        [Function("Function1")]
-        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
+        [Function("HomeFunctionText")]
+        public HttpResponseData GetHomeText(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "text")] HttpRequestData req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
             var response = req.CreateResponse(HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
 
-            response.WriteString("Welcome to Azure Functions!");
+            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+            var payload = new { Message = "Hello from cloud", Type = "Text" };
+            response.WriteString(JsonConvert.SerializeObject(payload));
 
             return response;
+        }
+
+        [Function("HomeFunctionJson")]
+        public IActionResult GetHomeJson(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "json")] HttpRequestData req)
+        {
+            _logger.LogInformation("C# HTTP trigger function processed a request.");
+
+            return new OkObjectResult(new { Message = "Hello from cloud", Type = "Json" });
         }
     }
 }

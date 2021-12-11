@@ -30,7 +30,8 @@ namespace YRM.Migrations
         }
 
         [Function("Migrate")]
-        public async Task Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
+        public async Task MigrateAsync(
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
         {
             try
             {
@@ -43,5 +44,25 @@ namespace YRM.Migrations
                 logger.LogError(e.ToString());
             }
         }
+
+
+        [Function("Seeds")]
+        public async Task AddSeedsAsync(
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
+        {
+            try
+            {
+                await reminderConfigurationDbContext.MigrateDefaultClientValuesAsync();
+                await reminderConfigurationDbContext.MigrateDefaultApiScopes();
+                await reminderConfigurationDbContext.MigrateDefaultIdentityResources();
+
+                await reminderMigrationDbContext.MigrateDefaultAspUserAsync();
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e.ToString());
+            }
+        }
+
     }
 }
