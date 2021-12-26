@@ -34,8 +34,7 @@ builder.Services
     .AddOperationalStore(options =>
     {
         options.ConfigureDbContext = b => b.UseSqlServer(connectionString);
-    })
-    .AddAspNetIdentity<ApplicationUser>();
+    });
 
 var app = builder.Build();
 

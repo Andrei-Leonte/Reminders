@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
@@ -16,7 +17,7 @@ namespace YRM.UserManager.Function
             _logger = loggerFactory.CreateLogger<Function1>();
         }
 
-        [Function("HomeFunctionText")]
+        [AllowAnonymous, Function("HomeFunctionText")]
         public HttpResponseData GetHomeText(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "text")] HttpRequestData req)
         {
@@ -31,7 +32,7 @@ namespace YRM.UserManager.Function
             return response;
         }
 
-        [Function("HomeFunctionJson")]
+        [AllowAnonymous, Function("HomeFunctionJson")]
         public IActionResult GetHomeJson(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "json")] HttpRequestData req)
         {
