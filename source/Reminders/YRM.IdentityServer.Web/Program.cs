@@ -12,10 +12,10 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ReminderDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<AspIdentityDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<ReminderDbContext>()
+    .AddEntityFrameworkStores<AspIdentityDbContext>()
     .AddDefaultTokenProviders();
 
 builder.Services

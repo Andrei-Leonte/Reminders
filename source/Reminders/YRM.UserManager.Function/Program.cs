@@ -16,12 +16,14 @@ namespace YRM.UserManager.Function
                         .AddAuthentication("Bearer")
                         .AddJwtBearer("Bearer", options =>
                         {
-                            options.Authority = "https://localhost:7062";
+                            options.Authority = "https://localhost:7245";
+                            options.Audience = "https://localhost:5502";
 
-                            options.TokenValidationParameters = new TokenValidationParameters
-                            {
-                                ValidateAudience = false
-                            };
+                            //options.TokenValidationParameters = new TokenValidationParameters
+                            //{
+                            //    ValidateAudience = true,
+                            //    ValidateIssuer = true
+                            //};
                         });
                 })
                 .Build();

@@ -18,7 +18,7 @@ namespace YRM.UserManager.Function.Functions
 
         [Authorize, Function("ASPAuthorizaeFunction")]
         public HttpResponseData Run([HttpTrigger(
-            AuthorizationLevel.Anonymous, "get", "post", Route = "authorize")] HttpRequestData req)
+            "get", "post", Route = "authorize")] HttpRequestData req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 

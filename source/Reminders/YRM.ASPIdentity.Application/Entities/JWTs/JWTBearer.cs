@@ -11,7 +11,7 @@ namespace YRM.ASPIdentity.Application.Entities.JWTs
         }
 
         public string? Issuer { get; set; }
-        public IEnumerable<JwtBearerAudience> Audiences { get; set; }
+        public List<JwtBearerAudience> Audiences { get; set; }
 
         public string GetIssuer()
         {

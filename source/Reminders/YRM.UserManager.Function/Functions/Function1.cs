@@ -19,7 +19,7 @@ namespace YRM.UserManager.Function
 
         [AllowAnonymous, Function("HomeFunctionText")]
         public HttpResponseData GetHomeText(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "text")] HttpRequestData req)
+            [HttpTrigger("get", Route = "text")] HttpRequestData req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 

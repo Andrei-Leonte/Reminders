@@ -2,8 +2,8 @@
 {
     public class JwtBearerAudience
     {
-        public string? ValidAudience { get; set; }
-        public string? IssuerKey { get; set; }
+        public string ValidAudience { get; set; }
+        public string IssuerKey { get; set; }
 
         public string GetValidAudience()
         {

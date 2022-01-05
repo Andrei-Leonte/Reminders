@@ -5,9 +5,9 @@ using YRM.Domain.Entities.Identity;
 
 namespace YRM.Infrastructure.Contexts
 {
-    public class ReminderDbContext : IdentityDbContext<ApplicationUser>
+    public class AspIdentityDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ReminderDbContext(DbContextOptions<ReminderDbContext> options)
+        public AspIdentityDbContext(DbContextOptions<AspIdentityDbContext> options)
             : base(options)
         {
         }

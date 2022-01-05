@@ -1,8 +1,13 @@
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using YRM.ASPIdentity.Application;
 using YRM.ASPIdentity.Application.Entities.JWTs;
+using YRM.Common;
+using YRM.Domain.Entities.Identity;
 using YRM.Infrastructure.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,18 +15,21 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var jwtBearer = new JWTBearer();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("ReminderDBConnectionString");
 builder.Configuration.GetSection("JWTBearer").Bind(jwtBearer);
 
 builder.Services
-    .AddDbContext<ReminderDbContext>(options =>
+    .AddDbContext<AspIdentityDbContext>(options =>
         options.UseSqlServer(connectionString));
 
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services
+    .AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<AspIdentityDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services
-    .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ReminderDbContext>();
+    .AddAuthentication()
+    .AddIdentityServerJwt();
 
 builder.Services
     .AddAuthentication(option =>
@@ -45,20 +53,34 @@ builder.Services
         };
     });
 
-builder.Services.AddRazorPages();
+
+builder.Services.Configure<JwtBearerOptions>(
+    IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
+    options =>
+    {
+        var onTokenValidated = options.Events.OnTokenValidated;
+
+        options.Events.OnTokenValidated = async context =>
+        {
+            await onTokenValidated(context);
+        };
+    });
+
+builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddControllers();
+builder.Services.AddSwaggerGen();
+
+builder.Services.RegisterCommonPackages();
+builder.Services.RegistersApplicationPackages();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseMigrationsEndPoint();
-}
-else
-{
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
@@ -69,6 +91,6 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapRazorPages();
+app.MapControllers();
 
 app.Run();

@@ -2,13 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
-using YRM.Migrations.Contexts.Reminders;
+using YRM.Migrations.Contexts.AspIdentity;
 
 #nullable disable
 
 namespace YRM.Migrations.Migrations.Reminders
 {
-    [DbContext(typeof(ReminderMigrationDbContext))]
+    [DbContext(typeof(AspIdentityMigrationDbContext))]
     partial class ReminderMigrationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

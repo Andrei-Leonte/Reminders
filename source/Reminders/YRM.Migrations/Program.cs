@@ -4,8 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using YRM.Domain.Entities.Identity;
 using YRM.Infrastructure.Contexts;
+using YRM.Migrations.Contexts.AspIdentity;
 using YRM.Migrations.Contexts.IdentityServers;
-using YRM.Migrations.Contexts.Reminders;
 
 namespace YRM.Migrations
 {
@@ -30,15 +30,15 @@ namespace YRM.Migrations
                     builder.Services.AddDbContext<ReminderPersistedGrantDbContext>(options =>
                         options.UseSqlServer(sqlConnectionString));
 
-                    builder.Services.AddDbContext<ReminderMigrationDbContext>(options =>
+                    builder.Services.AddDbContext<AspIdentityMigrationDbContext>(options =>
                         options.UseSqlServer(sqlConnectionString));
 
-                    builder.Services.AddDbContext<ReminderDbContext>(options =>
+                    builder.Services.AddDbContext<AspIdentityDbContext>(options =>
                         options.UseSqlServer(sqlConnectionString));
 
                     //builder.Services.AddIdentity
                     builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                        .AddEntityFrameworkStores<ReminderDbContext>();
+                        .AddEntityFrameworkStores<AspIdentityDbContext>();
 
                     builder.Services.AddIdentityServer(options =>
                     {

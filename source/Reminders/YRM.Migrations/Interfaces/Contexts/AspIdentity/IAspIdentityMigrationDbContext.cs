@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace YRM.Migrations.Interfaces.Contexts.Reminders
+namespace YRM.Migrations.Interfaces.Contexts.AspIdentity
 {
-    internal interface IReminderMigrationDbContext
+    internal interface IAspIdentityMigrationDbContext
     {
         Task MigrateAsync();
         Task MigrateDefaultAspUserAsync();

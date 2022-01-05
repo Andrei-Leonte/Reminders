@@ -3,41 +3,41 @@ using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
+using YRM.Migrations.Interfaces.Contexts.AspIdentity;
 using YRM.Migrations.Interfaces.Contexts.IndentityServers;
-using YRM.Migrations.Interfaces.Contexts.Reminders;
 
 namespace YRM.Migrations
 {
-    internal class MigrationFunction
+    internal class IdentityServerMigrationFunction
     {
-        private readonly ILogger logger;
-
         private readonly IReminderConfigurationDbContext reminderConfigurationDbContext;
         private readonly IReminderPersistedGrantDbContext reminderPersistedGrantDbContext;
-        private readonly IReminderMigrationDbContext reminderMigrationDbContext;
+        private readonly IAspIdentityMigrationDbContext aspIdentityMigrationDbContext;
 
-        public MigrationFunction(
+        private readonly ILogger logger;
+
+        public IdentityServerMigrationFunction(
             IReminderConfigurationDbContext reminderConfigurationDbContext,
             IReminderPersistedGrantDbContext reminderPersistedGrantDbContext,
-            IReminderMigrationDbContext reminderMigrationDbContext,
+            IAspIdentityMigrationDbContext aspIdentityMigrationDbContext,
             ILoggerFactory loggerFactory)
         {
             this.reminderConfigurationDbContext = reminderConfigurationDbContext;
             this.reminderPersistedGrantDbContext = reminderPersistedGrantDbContext;
-            this.reminderMigrationDbContext = reminderMigrationDbContext;
+            this.aspIdentityMigrationDbContext = aspIdentityMigrationDbContext;
 
-            logger = loggerFactory.CreateLogger<MigrationFunction>();
+            logger = loggerFactory.CreateLogger<IdentityServerMigrationFunction>();
         }
 
-        [Function("Migrate")]
-        public async Task MigrateAsync(
+        [Function("identityServer/migrate")]
+        public async Task IdentityServerMigrateAsync(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
         {
             try
             {
                 await reminderConfigurationDbContext.MigrateAsync();
                 await reminderPersistedGrantDbContext.MigrateAsync();
-                await reminderMigrationDbContext.MigrateAsync();
+                await aspIdentityMigrationDbContext.MigrateAsync();
             }
             catch(Exception e)
             {
@@ -45,9 +45,8 @@ namespace YRM.Migrations
             }
         }
 
-
-        [Function("Seeds")]
-        public async Task AddSeedsAsync(
+        [Function("identityServer/seeds")]
+        public async Task AddIdentityServerSeedsAsync(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
         {
             try
@@ -56,13 +55,12 @@ namespace YRM.Migrations
                 await reminderConfigurationDbContext.MigrateDefaultApiScopes();
                 await reminderConfigurationDbContext.MigrateDefaultIdentityResources();
 
-                await reminderMigrationDbContext.MigrateDefaultAspUserAsync();
+                await aspIdentityMigrationDbContext.MigrateDefaultAspUserAsync();
             }
             catch (Exception e)
             {
                 logger.LogError(e.ToString());
             }
         }
-
     }
 }

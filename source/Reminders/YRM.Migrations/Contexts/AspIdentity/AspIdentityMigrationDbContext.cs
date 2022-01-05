@@ -5,20 +5,20 @@ using YRM.Domain.Configurations;
 using YRM.Domain.Entities.Identity;
 using YRM.Infrastructure.Contexts;
 using YRM.Migrations.Entities;
-using YRM.Migrations.Interfaces.Contexts.Reminders;
+using YRM.Migrations.Interfaces.Contexts.AspIdentity;
 using YRM.Migrations.Interfaces.Services;
 
-namespace YRM.Migrations.Contexts.Reminders
+namespace YRM.Migrations.Contexts.AspIdentity
 {
-    internal class ReminderMigrationDbContext : ReminderDbContext, IReminderMigrationDbContext
+    internal class AspIdentityMigrationDbContext : AspIdentityDbContext, IAspIdentityMigrationDbContext
     {
         private readonly IUserManagerService userManagerService;
         private readonly IConfiguration configuration;
 
-        public ReminderMigrationDbContext(
+        public AspIdentityMigrationDbContext(
             IUserManagerService userManagerService,
             IConfiguration configuration,
-            DbContextOptions<ReminderDbContext> options)
+            DbContextOptions<AspIdentityDbContext> options)
             : base(options)
         { 
             this.userManagerService = userManagerService;
