@@ -1,6 +1,10 @@
+using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Tokens;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+IdentityModelEventSource.ShowPII = true;
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -12,13 +16,15 @@ builder.Services
     .AddJwtBearer("Bearer", options =>
     {
         options.Authority = "https://localhost:7245";
-        options.Audience = "WebReminder";
+        options.Audience = "https://localhost:7092";
 
-        //options.TokenValidationParameters = new TokenValidationParameters
-        //{
-        //    ValidateAudience = true,
-        //    ValidateIssuer = true
-        //};
+        options.MapInboundClaims = false;
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = false,
+            ValidateIssuer = false
+        };
     });
 
 var app = builder.Build();

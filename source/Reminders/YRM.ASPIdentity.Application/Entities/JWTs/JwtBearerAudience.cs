@@ -2,17 +2,18 @@
 {
     public class JwtBearerAudience
     {
+        public string AudienceName { get; set; }
         public string ValidAudience { get; set; }
         public string IssuerKey { get; set; }
 
         public string GetValidAudience()
         {
-            if (string.IsNullOrEmpty(ValidAudience))
+            if (string.IsNullOrEmpty(AudienceName))
             {
                 throw new InvalidOperationException("ValidAudience is null");
             }
 
-            return ValidAudience;
+            return AudienceName;
         }
 
         public string GetIssuerKey()

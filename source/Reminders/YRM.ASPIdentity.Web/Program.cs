@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using YRM.ASPIdentity.Application;
 using YRM.ASPIdentity.Application.Entities.JWTs;
+using YRM.ASPIdentity.Web.Extensions;
 using YRM.Common;
 using YRM.Domain.Entities.Identity;
 using YRM.Infrastructure.Contexts;
@@ -31,6 +32,8 @@ builder.Services
     .AddAuthentication()
     .AddIdentityServerJwt();
 
+builder.Services.AddScoped<ReminderJwtBearerEvents>();
+
 builder.Services
     .AddAuthentication(option =>
     {
@@ -51,6 +54,8 @@ builder.Services
             ValidAudiences = jwtBearer.GetValidAudiences(),
             IssuerSigningKeys = jwtBearer.GetSecurityKeys(),
         };
+
+        options.EventsType = typeof(ReminderJwtBearerEvents);
     });
 
 
@@ -92,5 +97,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();
