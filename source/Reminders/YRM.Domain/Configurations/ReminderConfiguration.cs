@@ -1,10 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Runtime.CompilerServices;
 using YRM.Domain.Entities;
+
+
 
 namespace YRM.Domain.Configurations
 {
-    public class ReminderConfiguration : IEntityTypeConfiguration<Reminder>
+    internal class ReminderConfiguration : IEntityTypeConfiguration<Reminder>
     {
         public void Configure(EntityTypeBuilder<Reminder> builder)
         {

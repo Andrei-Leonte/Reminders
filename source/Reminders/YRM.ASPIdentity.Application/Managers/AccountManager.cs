@@ -4,7 +4,7 @@ using YRM.ASPIdentity.Application.Interfaces.Services.Accounts;
 
 namespace YRM.ASPIdentity.Application.Managers
 {
-    public class AccountManager : IAccountManager
+    internal class AccountManager : IAccountManager
     {
         private readonly IAccountSignInManagerService accountSignInManagerService;
         private readonly IAccountTokenService accountTokenService;

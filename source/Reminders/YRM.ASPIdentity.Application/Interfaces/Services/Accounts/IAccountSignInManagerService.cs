@@ -4,7 +4,7 @@ using YRM.Domain.Entities.Identity;
 
 namespace YRM.ASPIdentity.Application.Interfaces.Services.Accounts
 {
-    public interface IAccountSignInManagerService
+    internal interface IAccountSignInManagerService
     {
         Task<ApplicationUser> VerifyEmailAsync(string email);
         Task<bool> VerifyPasswordAsync(ApplicationUser applicationUser, string password);
