@@ -5,7 +5,7 @@ using YRM.Domain.Entities.Identity;
 
 namespace YRM.Infrastructure.Contexts
 {
-    public class AspIdentityDbContext : IdentityDbContext<ApplicationUser>
+    internal class AspIdentityDbContext : IdentityDbContext<ApplicationUser>
     {
         public AspIdentityDbContext(DbContextOptions<AspIdentityDbContext> options)
             : base(options)

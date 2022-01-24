@@ -3,7 +3,7 @@ using YRM.Domain.Entities.Identity;
 
 namespace YRM.ASPIdentity.Application.Entities.JWTTokens.Webs
 {
-    public class AuthorizeTokenDetails
+    internal class AuthorizeTokenDetails
     {
         public AuthorizeTokenDetails(
             ApplicationUser applicationUser,

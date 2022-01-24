@@ -2,7 +2,7 @@
 
 namespace YRM.ASPIdentity.Application.Interfaces.Services.Accounts
 {
-    public interface IAccountTokenService
+    internal interface IAccountTokenService
     {
         string WebAuthorizeGenerate(AuthorizeTokenDetails generateWebTokenEntity);
     }
