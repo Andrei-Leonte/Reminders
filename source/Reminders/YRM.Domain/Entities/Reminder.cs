@@ -1,11 +1,14 @@
-﻿using YRM.Domain.Entities.Base.Awareness;
+﻿using System.Diagnostics.CodeAnalysis;
+using YRM.Domain.Entities.Base.Awareness;
 
 namespace YRM.Domain.Entities
 {
-#pragma warning disable CS8618
     internal record Reminder: ModifiedAwarenessEntityBase<Guid>
     {
+        [MaybeNull]
         public string Title { get; set; }
+
+        [MaybeNull]
         public string Description { get; set; }
     }
 }
