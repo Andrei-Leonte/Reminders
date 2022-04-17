@@ -8,8 +8,8 @@ using YRM.ASPIdentity.Application;
 using YRM.ASPIdentity.Application.Entities.JWTs;
 using YRM.ASPIdentity.Web.Extensions;
 using YRM.Common;
-using YRM.Domain.Entities.Identity;
-using YRM.Infrastructure.Contexts;
+using YRM.IdentityServer.Domain.Entities.Identity;
+using YRM.IdentityServer.Infrastructure.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 

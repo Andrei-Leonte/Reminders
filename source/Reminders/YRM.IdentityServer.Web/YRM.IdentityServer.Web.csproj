@@ -20,8 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\YRM.Domain\YRM.Domain.csproj" />
-    <ProjectReference Include="..\YRM.Infrastructure\YRM.Infrastructure.csproj" />
+    <ProjectReference Include="..\YRM.IdentityServer.Domain\YRM.IdentityServer.Domain.csproj" />
+    <ProjectReference Include="..\YRM.IdentityServer.Infrastructure\YRM.IdentityServer.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

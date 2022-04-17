@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\YRM.Common\YRM.Common.csproj" />
-    <ProjectReference Include="..\YRM.Domain\YRM.Domain.csproj" />
+    <ProjectReference Include="..\YRM.IdentityServer.Domain\YRM.IdentityServer.Domain.csproj" />
   </ItemGroup>
 
 </Project>

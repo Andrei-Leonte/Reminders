@@ -1,6 +1,5 @@
 ﻿using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
-using System.Collections.Generic;
 
 namespace YRM.IdentityServer.Web
 {
@@ -12,7 +11,6 @@ namespace YRM.IdentityServer.Web
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
             };
-
 
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>

@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using YRM.Domain.Entities.Identity;
-using YRM.Infrastructure.Contexts;
+using YRM.IdentityServer.Domain.Entities.Identity;
+using YRM.IdentityServer.Infrastructure.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+
 var connectionString = configuration["ReminderDBConnectionString"];
 
 builder.Services.AddControllers();
@@ -14,7 +15,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AspIdentityDbContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+builder.Services
+    .AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AspIdentityDbContext>()
     .AddDefaultTokenProviders();
 

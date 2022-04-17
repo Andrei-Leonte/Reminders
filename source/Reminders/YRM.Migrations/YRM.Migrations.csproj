@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
@@ -23,8 +23,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\YRM.Domain\YRM.Domain.csproj" />
-    <ProjectReference Include="..\YRM.Infrastructure\YRM.Infrastructure.csproj" />
+    <ProjectReference Include="..\YRM.IdentityServer.Domain\YRM.IdentityServer.Domain.csproj" />
+    <ProjectReference Include="..\YRM.IdentityServer.Infrastructure\YRM.IdentityServer.Infrastructure.csproj" />
+    <ProjectReference Include="..\YRM.Reminders.Domain\YRM.Reminders.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
@@ -34,8 +35,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Migrations\Reminders\" />
   </ItemGroup>
 </Project>

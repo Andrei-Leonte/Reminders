@@ -2,8 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using YRM.Domain.Entities.Identity;
-using YRM.Infrastructure.Contexts;
+using YRM.IdentityServer.Domain.Entities.Identity;
+using YRM.IdentityServer.Infrastructure.Contexts;
 using YRM.Migrations.Contexts.AspIdentity;
 using YRM.Migrations.Contexts.IdentityServers;
 

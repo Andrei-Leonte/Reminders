@@ -3,7 +3,7 @@ using System.Security.Claims;
 using YRM.ASPIdentity.Application.Entities.JWTTokens.Webs;
 using YRM.ASPIdentity.Application.Interfaces.Services.Accounts;
 using YRM.ASPIdentity.Application.Misc.Exceptions;
-using YRM.Domain.Entities.Identity;
+using YRM.IdentityServer.Domain.Entities.Identity;
 
 namespace YRM.ASPIdentity.Application.Services.Accounts
 {

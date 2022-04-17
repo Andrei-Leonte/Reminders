@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 using YRM.ASPIdentity.Application.Entities.JWTTokens.Webs;
-using YRM.Domain.Entities.Identity;
+using YRM.IdentityServer.Domain.Entities.Identity;
 
 namespace YRM.ASPIdentity.Application.Interfaces.Services.Accounts
 {
